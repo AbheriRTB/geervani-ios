@@ -11,6 +11,7 @@ import Foundation
 class FileReaderHelper {
     var firstArray:[String] = []
     var topicobj:Topic = Topic()
+    var wordobj:Word = Word()
     var mcontents:NSString=""
     
     func readData()->Topic{
@@ -33,14 +34,21 @@ class FileReaderHelper {
                     let parts = line.componentsSeparatedByString(":")
                     print(parts)
                     if line.containsString("_en") && parts.count == 2{
-                        self.topicobj.sentenceEnglish.append(parts[1])
+                        let key = parts[0].stringByReplacingOccurrencesOfString("_en", withString: "")
+                        self.topicobj.sentenceEnglish.updateValue(parts[1], forKey: key)
+                        
+                        //Initialize other dictonaries with emptry strings
+                        self.topicobj.sentenceSamskrit.updateValue("", forKey: key)
+                        self.topicobj.sentenceTranslit.updateValue("", forKey: key)
                     }
                     if line.containsString("_sn") && parts.count == 2{
                         let subparts = parts[1].componentsSeparatedByString("।")
                         
                         if subparts.count == 2{
-                            self.topicobj.sentenceSamskrit.append(subparts[0])
-                            self.topicobj.sentenceTranslit.append(subparts[1])
+                            let key = parts[0].stringByReplacingOccurrencesOfString("_sn", withString: "")
+                            
+                            self.topicobj.sentenceSamskrit.updateValue(subparts[0], forKey: key)
+                            self.topicobj.sentenceTranslit.updateValue(subparts[1], forKey: key)
                         }
                     }
                     
@@ -113,6 +121,35 @@ class FileReaderHelper {
     
     
     
+    func readWordData(contents:NSString)->Word{
+        
+        let lines = contents.componentsSeparatedByString("\n")
+        for line in lines{
+            print("Line = \(line)")
+            if !line.hasPrefix("//") && !line.isEmpty{
+                let parts = line.componentsSeparatedByString(":")
+                print(parts)
+                if line.containsString("_en") && parts.count == 2{
+                    let key = parts[0].stringByReplacingOccurrencesOfString("_en", withString: "")
+                    let ns = parts[1].stringByReplacingOccurrencesOfString("\"", withString: "").stringByReplacingOccurrencesOfString(",", withString: "")
+                    self.wordobj.wordEnglish.updateValue(ns, forKey: key)
+                    
+                    //Initialize other dictonaries with emptry strings
+                    self.wordobj.wordSamskrit.updateValue("", forKey: key)
+                }
+                if line.containsString("_sn") && parts.count == 2{
+                    
+                    let key = parts[0].stringByReplacingOccurrencesOfString("_sn", withString: "")
+                    var ns = parts[1].stringByReplacingOccurrencesOfString("\"", withString: "").stringByReplacingOccurrencesOfString(",", withString: "")
+                    self.wordobj.wordSamskrit.updateValue(ns, forKey: key)
+                }
+                
+            }
+        }
+        
+        return wordobj
+    }
+    
     func readTopicData(contents:NSString)->Topic{
         
         let lines = contents.componentsSeparatedByString("\n")
@@ -122,18 +159,24 @@ class FileReaderHelper {
                 let parts = line.componentsSeparatedByString(":")
                 print(parts)
                 if line.containsString("_en") && parts.count == 2{
+                    let key = parts[0].stringByReplacingOccurrencesOfString("_en", withString: "")
                     let ns = parts[1].stringByReplacingOccurrencesOfString("\"", withString: "").stringByReplacingOccurrencesOfString(",", withString: "")
-                    self.topicobj.sentenceEnglish.append(ns)
+                    self.topicobj.sentenceEnglish.updateValue(ns, forKey: key)
+                    
+                    //Initialize other dictonaries with emptry strings
+                    self.topicobj.sentenceSamskrit.updateValue("", forKey: key)
+                    self.topicobj.sentenceTranslit.updateValue("", forKey: key)
                 }
                 if line.containsString("_sn") && parts.count == 2{
-                    let subparts = parts[1].componentsSeparatedByString("।")
+                    let subparts = parts[1].componentsSeparatedByString("<br>")
                     
                     if subparts.count == 2{
+                        let key = parts[0].stringByReplacingOccurrencesOfString("_sn", withString: "")
                         var ns = subparts[0].stringByReplacingOccurrencesOfString("\"", withString: "").stringByReplacingOccurrencesOfString(",", withString: "")
-                        self.topicobj.sentenceSamskrit.append(ns+"|")
+                        self.topicobj.sentenceSamskrit.updateValue(ns, forKey: key)
                         
-                        ns = subparts[1].stringByReplacingOccurrencesOfString("<br>", withString:"").stringByReplacingOccurrencesOfString("\",", withString: "")
-                        self.topicobj.sentenceTranslit.append(ns)
+                        ns = subparts[1].stringByReplacingOccurrencesOfString("\",", withString: "")
+                        self.topicobj.sentenceTranslit.updateValue(ns, forKey: key)
                     }
                 }
                 

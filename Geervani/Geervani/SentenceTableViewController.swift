@@ -61,14 +61,18 @@ class SentenceTableViewController: UIViewController, UITableViewDelegate, UITabl
         let url = "http://abheri.pythonanywhere.com/static/geervani/datafiles/topics/" + topicListDict[passedValue]!
         fileHelper.readFileFromWeb(url, callback: refreshSentenceTableWithData)
         //topicobj = ff.readData()
-        sentenceList = topicobj.sentenceEnglish
+        //sentenceList = topicobj.sentenceEnglish
         
     }
     
     func refreshSentenceTableWithData(contents:NSString){
         let fileHelper = FileReaderHelper()
         topicobj = fileHelper.readTopicData(contents)
-        sentenceList = topicobj.sentenceEnglish
+        sentenceList.removeAll()
+        
+        for(key, value) in topicobj.sentenceEnglish{
+            sentenceList.append(value)
+        }
         
         dispatch_async(dispatch_get_main_queue(),{
             self.SentenceTableView.reloadData()
@@ -120,8 +124,12 @@ class SentenceTableViewController: UIViewController, UITableViewDelegate, UITabl
         //SentenceSanskritLabel.text = currentCell.textLabel!.text
         valueToPass = currentCell.textLabel!.text
         
-        SentenceSanskritLabel.text = topicobj.sentenceSamskrit[indexPath.row]
-        SentenceEnglishLabel.text = topicobj.sentenceTranslit[indexPath.row]
+        let keys = topicobj.sentenceEnglish.allKeysForValue(sentenceList[indexPath.row])
+        print("Keys:\topi(keys)")
+        
+        
+        SentenceSanskritLabel.text = topicobj.sentenceSamskrit[keys[0]]
+        SentenceEnglishLabel.text = topicobj.sentenceTranslit[keys[0]]
         //performSegueWithIdentifier("TopicSelected", sender: self)
         
     }
@@ -151,4 +159,10 @@ class SentenceTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     */
 
+}
+
+extension Dictionary where Value : Equatable {
+    func allKeysForValue(val : Value) -> [Key] {
+        return self.filter { $1 == val }.map { $0.0 }
+    }
 }

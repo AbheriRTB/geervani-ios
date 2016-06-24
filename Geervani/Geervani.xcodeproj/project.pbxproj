@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		E82429001C481A830074A8E7 /* TopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82428FF1C481A830074A8E7 /* TopicTableViewController.swift */; };
 		E82429021C482B500074A8E7 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82429011C482B500074A8E7 /* TopicViewController.swift */; };
+		E82AB0F81CAC458B000AB317 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82AFC161C48168200788A32 /* AppDelegate.swift */; };
+		E82AB0FA1CAC4CC1000AB317 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82AB0F91CAC4CC1000AB317 /* Word.swift */; };
+		E82AB0FC1CAC519A000AB317 /* DictionaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82AB0FB1CAC519A000AB317 /* DictionaryTableViewController.swift */; };
 		E82AFBD81C48140700788A32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E82AFBD61C48140700788A32 /* Main.storyboard */; };
 		E82AFBDA1C48140700788A32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E82AFBD91C48140700788A32 /* Assets.xcassets */; };
 		E82AFBDD1C48140700788A32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E82AFBDB1C48140700788A32 /* LaunchScreen.storyboard */; };
@@ -19,7 +22,6 @@
 		E82AFC081C48142300788A32 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E82AFC031C48142300788A32 /* Info.plist */; };
 		E82AFC111C4814F200788A32 /* GeervaniController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82AFC0C1C4814F200788A32 /* GeervaniController.swift */; };
 		E82AFC151C4814F200788A32 /* SubhashitaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82AFC101C4814F200788A32 /* SubhashitaViewController.swift */; };
-		E82AFC171C48168200788A32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82AFC161C48168200788A32 /* AppDelegate.swift */; };
 		E84905571C4E7AB30010C5D8 /* SentenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84905561C4E7AB30010C5D8 /* SentenceTableViewController.swift */; };
 		E8597E671C52B941005EC1A7 /* FileReaderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8597E661C52B941005EC1A7 /* FileReaderHelper.swift */; };
 		E8597E831C536AFA005EC1A7 /* Commerce.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8597E6B1C536AFA005EC1A7 /* Commerce.txt */; };
@@ -160,6 +162,8 @@
 /* Begin PBXFileReference section */
 		E82428FF1C481A830074A8E7 /* TopicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicTableViewController.swift; sourceTree = "<group>"; };
 		E82429011C482B500074A8E7 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
+		E82AB0F91CAC4CC1000AB317 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		E82AB0FB1CAC519A000AB317 /* DictionaryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTableViewController.swift; sourceTree = "<group>"; };
 		E82AFBCF1C48140700788A32 /* Geervani.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geervani.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E82AFBD71C48140700788A32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E82AFBD91C48140700788A32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 				E84905561C4E7AB30010C5D8 /* SentenceTableViewController.swift */,
 				E82AFC0C1C4814F200788A32 /* GeervaniController.swift */,
 				E82AFC101C4814F200788A32 /* SubhashitaViewController.swift */,
+				E82AB0FB1CAC519A000AB317 /* DictionaryTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				E8BBF2671C9AE0DF0050F6FF /* Topic.swift */,
+				E82AB0F91CAC4CC1000AB317 /* Word.swift */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -624,8 +630,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E82AFC171C48168200788A32 /* AppDelegate.swift in Sources */,
+				E82AB0F81CAC458B000AB317 /* AppDelegate.swift in Sources */,
 				E82AFC151C4814F200788A32 /* SubhashitaViewController.swift in Sources */,
+				E82AB0FA1CAC4CC1000AB317 /* Word.swift in Sources */,
+				E82AB0FC1CAC519A000AB317 /* DictionaryTableViewController.swift in Sources */,
 				E82AFC111C4814F200788A32 /* GeervaniController.swift in Sources */,
 				E82429021C482B500074A8E7 /* TopicViewController.swift in Sources */,
 				E84905571C4E7AB30010C5D8 /* SentenceTableViewController.swift in Sources */,
