@@ -11,9 +11,9 @@ class Topic {
 
     
     var topic:String = ""
-    public var sentenceEnglish:[String:String] = [:]
-    public var sentenceSamskrit:[String:String] = [:]
-    public var sentenceTranslit:[String:String] = [:]
+    internal var sentenceEnglish:[String:String] = [:]
+    internal var sentenceSamskrit:[String:String] = [:]
+    internal var sentenceTranslit:[String:String] = [:]
 
     func Topic(){
         

@@ -9,8 +9,9 @@
 import Foundation
 class Word {
     
-    public var wordEnglish:[String:String] = [:]
-    public var wordSamskrit:[String:String] = [:]
+    internal var wordID:Int32=0
+    internal var wordEnglish:String=""
+    internal var wordSamskrit:String=""
     
     func Word(){
         

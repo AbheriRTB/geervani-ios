@@ -122,7 +122,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Miy-zo-qcQ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Miy-zo-qcQ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -152,6 +152,13 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.92549026012420654" green="0.88235300779342651" blue="0.67058825492858887" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="Miy-zo-qcQ" firstAttribute="top" secondItem="BXY-Pb-WCq" secondAttribute="topMargin" constant="25" id="3rK-ug-Y8q"/>
+                            <constraint firstItem="Miy-zo-qcQ" firstAttribute="top" secondItem="BXY-Pb-WCq" secondAttribute="topMargin" constant="25" id="CSh-e4-ijF"/>
+                            <constraint firstItem="Miy-zo-qcQ" firstAttribute="leading" secondItem="BXY-Pb-WCq" secondAttribute="leading" id="DTB-mt-jdf"/>
+                            <constraint firstAttribute="trailing" secondItem="Miy-zo-qcQ" secondAttribute="trailing" id="ZBH-wk-tN3"/>
+                            <constraint firstItem="Miy-zo-qcQ" firstAttribute="bottom" secondItem="jHH-EQ-GYn" secondAttribute="top" id="igh-Tj-puZ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Dictionary" id="hKA-UD-avC"/>
                     <connections>

@@ -13,17 +13,25 @@ class DictionaryTableViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var DictionaryTableView: UITableView!
     
     
-    var wordobj:Word =  Word();
+    var dictobj:Dict =  Dict()
+    var tmpWord:Word = Word()
     
+    let dbInstance:ModelManager = ModelManager.getInstance()
     var fileProcessed:String = "";
-    var wordlist=["word1","word2","word3","word4"]
+    var processedFileCounter:Int = 0;
+    var allWordData:NSMutableArray = NSMutableArray()
+    var myActivityIndicator:UIActivityIndicatorView =
+                    UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+
     
-    let wordFiles=[ "LetterA", "LetterB", "LetterC",
-                    "LetterD", "LetterE", "LetterF", "LetterG", "LetterH",
-                    "LetterI", "LetterJ", "LetterK", "LetterK", "LetterL",
-                    "LetterM", "LetterN", "LetterO", "LetterP", "LetterQ",
-                    "LetterR", "LetterS", "LetterT", "LetterU", "LetterV",
-                    "LetterW", "LetterX", "LetterY", "LetterZ"]
+    var wordlist=["Loading Please Wait..."]
+    
+    let wordFiles=[ "LetterA", "LetterB", "LetterC", "LetterD", "LetterE",
+                    "LetterF", "LetterG", "LetterH", "LetterI", "LetterJ",
+                    "LetterK", "LetterL", "LetterM", "LetterN", "LetterO",
+                    "LetterP", "LetterQ", "LetterR", "LetterS", "LetterT",
+                    "LetterU", "LetterV", "LetterW", "LetterX", "LetterY",
+                    "LetterZ"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +44,7 @@ class DictionaryTableViewController: UIViewController, UITableViewDelegate, UITa
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
         
         let fileHelper = FileReaderHelper()
         //MARK: Move base URL to a plist file
@@ -50,21 +59,43 @@ class DictionaryTableViewController: UIViewController, UITableViewDelegate, UITa
     
     func refreshWordTableWithData(contents:NSString){
         let fileHelper = FileReaderHelper()
-        wordobj = fileHelper.readWordData(contents)
+        dictobj = fileHelper.readDictData(contents)
         
-        if fileProcessed == "LetterA"{
-            wordlist.removeAll()
+        if processedFileCounter == 0{
+            dbInstance.deleteAllWordData()
+        }
+        processedFileCounter++;
+        
+        for(key, value) in dictobj.wordEnglish{
+            //wordlist.append(value)
+            tmpWord.wordEnglish = value
+            tmpWord.wordSamskrit = dictobj.wordSamskrit[key]!
+            
+            dbInstance.addWordData(tmpWord)
         }
         
-        for(key, value) in wordobj.wordEnglish{
-            wordlist.append(value)
-        }
-        
-        if fileProcessed == "LetterZ"{
+        if processedFileCounter == 25{
+            allWordData = dbInstance.getAllWordData()
+            if allWordData.count > 0{
+                wordlist.removeAll()
+                for var i=0; i<allWordData.count; ++i{
+                    let tw:Word = (allWordData[i] as? Word)!
+                    wordlist.append(tw.wordEnglish)
+                }
+            }
             dispatch_async(dispatch_get_main_queue(),{
                 self.DictionaryTableView.reloadData()
+                self.myActivityIndicator.hidden = true
+            
             });
         }
+    }
+    
+    
+    func createSpinner(){
+        myActivityIndicator.center = view.center
+        myActivityIndicator.startAnimating()
+        view.addSubview(myActivityIndicator)
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,7 +121,7 @@ class DictionaryTableViewController: UIViewController, UITableViewDelegate, UITa
 
         // Configure the cell...
         cell.textLabel?.text = wordlist[indexPath.row]
-        cell.backgroundColor=UIColor.greenColor()
+        //cell.backgroundColor=UIColor.greenColor()
 
         return cell
     }

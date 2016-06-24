@@ -11,7 +11,7 @@ import Foundation
 class FileReaderHelper {
     var firstArray:[String] = []
     var topicobj:Topic = Topic()
-    var wordobj:Word = Word()
+    var dictobj:Dict = Dict()
     var mcontents:NSString=""
     
     func readData()->Topic{
@@ -108,11 +108,11 @@ class FileReaderHelper {
         let messageURL = NSURL(string:file)
         
         let sharedSession = NSURLSession.sharedSession()
-        print("---------------FROM WEB------------")
+        print("--- Reading File from web : " + file + " ---")
         let task = sharedSession.dataTaskWithURL(messageURL!) {(data, response, error) in
             
             contents = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-            print(contents)
+            //print(contents)
             callback(contents)
             
         }
@@ -121,7 +121,8 @@ class FileReaderHelper {
     
     
     
-    func readWordData(contents:NSString)->Word{
+    
+    func readDictData(contents:NSString)->Dict{
         
         let lines = contents.componentsSeparatedByString("\n")
         for line in lines{
@@ -132,22 +133,22 @@ class FileReaderHelper {
                 if line.containsString("_en") && parts.count == 2{
                     let key = parts[0].stringByReplacingOccurrencesOfString("_en", withString: "")
                     let ns = parts[1].stringByReplacingOccurrencesOfString("\"", withString: "").stringByReplacingOccurrencesOfString(",", withString: "")
-                    self.wordobj.wordEnglish.updateValue(ns, forKey: key)
+                    self.dictobj.wordEnglish.updateValue(ns, forKey: key)
                     
                     //Initialize other dictonaries with emptry strings
-                    self.wordobj.wordSamskrit.updateValue("", forKey: key)
+                    self.dictobj.wordSamskrit.updateValue("", forKey: key)
                 }
                 if line.containsString("_sn") && parts.count == 2{
                     
                     let key = parts[0].stringByReplacingOccurrencesOfString("_sn", withString: "")
                     var ns = parts[1].stringByReplacingOccurrencesOfString("\"", withString: "").stringByReplacingOccurrencesOfString(",", withString: "")
-                    self.wordobj.wordSamskrit.updateValue(ns, forKey: key)
+                    self.dictobj.wordSamskrit.updateValue(ns, forKey: key)
                 }
                 
             }
         }
         
-        return wordobj
+        return dictobj
     }
     
     func readTopicData(contents:NSString)->Topic{
