@@ -2,8 +2,8 @@
 //  GeervaniTests.swift
 //  GeervaniTests
 //
-//  Created by Prasanna Ramaswamy on 14/01/16.
-//  Copyright © 2016 Abheri. All rights reserved.
+//  Created by Ullas M L on 25/06/16.
+//  Copyright © 2016 Geervani. All rights reserved.
 //
 
 import XCTest
@@ -28,7 +28,7 @@ class GeervaniTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

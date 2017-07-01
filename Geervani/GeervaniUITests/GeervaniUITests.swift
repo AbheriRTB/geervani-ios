@@ -2,8 +2,8 @@
 //  GeervaniUITests.swift
 //  GeervaniUITests
 //
-//  Created by Prasanna Ramaswamy on 14/01/16.
-//  Copyright © 2016 Abheri. All rights reserved.
+//  Created by Ullas M L on 25/06/16.
+//  Copyright © 2016 Geervani. All rights reserved.
 //
 
 import XCTest
