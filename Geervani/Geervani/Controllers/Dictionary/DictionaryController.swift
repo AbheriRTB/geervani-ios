@@ -64,7 +64,7 @@ class DictionaryController: UIViewController,UITableViewDelegate,UITableViewData
         promise.then({ (allWords) -> AnyObject? in
             self.words = allWords as! [Word]
             self.sections = self.getSections(self.words)
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
             self.activityIndicator.stopAnimating()
             return nil
         }) { (error) -> AnyObject? in
@@ -83,10 +83,6 @@ class DictionaryController: UIViewController,UITableViewDelegate,UITableViewData
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DictionaryController.hideKeyboard))
         tapGesture.cancelsTouchesInView = true
         tableView.addGestureRecognizer(tapGesture)
-        
-        
-
-        
     }
     
     func wordRepository(_ punchRepository: WordRepository,cachedWords: [Word]){
@@ -125,52 +121,45 @@ class DictionaryController: UIViewController,UITableViewDelegate,UITableViewData
         return index
         
     }
-        
-    func tableView(_ tableView: UITableView, viewHeightForHeaderInSection section: Int) -> Int{
-            return 0;
-    }
-    
-    func tableView(_ tableView: UITableView, viewHeightForFooterInSection section: Int) -> Int{
-        return 0;
-    }
 
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         //Create label and autoresize it
-
-        var labelFrame = CGRect(x: 10, y: 5, width: tableView.frame.width, height: 0.01)
-        labelFrame.size.height=30
+        let labelFrame = CGRect(x: 10, y: 5, width: tableView.frame.width, height: 0.01)
         let headerLabel = UILabel(frame: labelFrame)
         headerLabel.font = UIFont(name: "Avenir-Light", size: 20)
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
         headerLabel.sizeToFit()
-        headerLabel.textColor=UIColor(colorLiteralRed: 200, green: 200, blue: 200, alpha: 1)
+        headerLabel.textColor=UIColor.init(red:200, green:200, blue:200, alpha:1)
         
         //Adding Label to existing headerView
         self.edgesForExtendedLayout = UIRectEdge()
 
-        var headerFrame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: CGFloat.leastNormalMagnitude)
-        headerFrame.size.height = CGFloat.leastNormalMagnitude
         let headerView = UIView(frame: CGRect.zero)
         headerView.backgroundColor = UIColor.darkGray
-        //headerView.backgroundColor=UIColor(colorLiteralRed: 50, green: 50, blue: 50, alpha: 1)
         headerView.addSubview(headerLabel)
         
         return headerView
     }
+ 
+    //This function is a must to control the height of the header. viewForHeaderInSection can't control the height
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
-        //Create label and autoresize it
-        //let footerView = UIView(frame: CGRectZero)
-        var footerFrame = CGRect(x: 10, y: 5, width: tableView.frame.width, height: 0.01)
-        footerFrame.size.height = 0
-        print(footerFrame.height)
+        let footerFrame = CGRect(x: 10, y: 5, width: tableView.frame.width, height: 0.01)
         let footerView = UIView(frame: footerFrame)
-        footerView.backgroundColor = UIColor.red
+        footerView.backgroundColor = UIColor.lightGray
 
         return footerView
+    }
+    
+    //This function is a must to control the height of the footer. viewForFooterInSection can't control the height
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 2.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -216,7 +205,7 @@ class DictionaryController: UIViewController,UITableViewDelegate,UITableViewData
         let searchString:String = searchController.searchBar.text! + "%"
         //print("Search:" + searchString)
         let wordRepository = WordRepository()
-        if searchString.characters.count > 1{
+        if searchString.count > 1{
             filteredwords = wordRepository.fetchFilteredWords(searchString)
             
             //Recreate the section
@@ -253,13 +242,13 @@ class DictionaryController: UIViewController,UITableViewDelegate,UITableViewData
         
         for  i in 0...words.count-1 {
             
-            if words[i].english!.characters.count == 0{
+            if words[i].english!.count == 0{
                 continue
             }
             
             let commonPrefix = words[i].english!.commonPrefix(with: words[index].english!, options: .caseInsensitive)
             
-            if (commonPrefix.characters.count == 0 || i == words.count-1){
+            if (commonPrefix.count == 0 || i == words.count-1){
                 
                 let string = words[index].english!.uppercased();
                 let firstCharacter = string[string.startIndex]
