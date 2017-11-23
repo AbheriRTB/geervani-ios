@@ -1,5 +1,7 @@
 
 import UIKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate , UITabBarControllerDelegate {
@@ -9,6 +11,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UITabBarControllerDelega
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let frame = UIScreen.main.bounds
         self.window = UIWindow(frame: frame)
+        
+        Fabric.with([Crashlytics.self])
 
         let rootTabBarController: UITabBarController = UITabBarController()
         rootTabBarController.viewControllers = TabProvider().viewControllersForModules()

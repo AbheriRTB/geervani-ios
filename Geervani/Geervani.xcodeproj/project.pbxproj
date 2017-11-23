@@ -97,6 +97,7 @@
 		E842CB92CF5F65FCD6B6F9FC /* Pods_GeervaniTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95FF5923B618CCBA439AE8A3 /* Pods_GeervaniTests.framework */; };
 		E84EA0831D292EA200CEA8F6 /* DictionaryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84EA0811D292EA200CEA8F6 /* DictionaryTableCell.swift */; };
 		E84EA0841D292EA200CEA8F6 /* DictionaryTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E84EA0821D292EA200CEA8F6 /* DictionaryTableCell.xib */; };
+		E8BA5CA01FC0401200980F6E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8BA5C9F1FC0401200980F6E /* GameKit.framework */; };
 		E8C63C6C1DFC715200ED866F /* SubhashitaDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C63C6B1DFC715200ED866F /* SubhashitaDeserializer.swift */; };
 		E8C63C6E1DFC7F3D00ED866F /* 20161210235059324_CreateSubhashitaTable.sql in Resources */ = {isa = PBXBuildFile; fileRef = E8C63C6D1DFC7F3D00ED866F /* 20161210235059324_CreateSubhashitaTable.sql */; };
 		E8D485A61D214E830020C8F0 /* 20160627173438948_Words.sql in Resources */ = {isa = PBXBuildFile; fileRef = E8D485A51D214E830020C8F0 /* 20160627173438948_Words.sql */; };
@@ -229,6 +230,7 @@
 		E8228B211DFDBC36005278E4 /* info.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = info.html; sourceTree = "<group>"; };
 		E84EA0811D292EA200CEA8F6 /* DictionaryTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTableCell.swift; sourceTree = "<group>"; };
 		E84EA0821D292EA200CEA8F6 /* DictionaryTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DictionaryTableCell.xib; sourceTree = "<group>"; };
+		E8BA5C9F1FC0401200980F6E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		E8C63C6B1DFC715200ED866F /* SubhashitaDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubhashitaDeserializer.swift; sourceTree = "<group>"; };
 		E8C63C6D1DFC7F3D00ED866F /* 20161210235059324_CreateSubhashitaTable.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 20161210235059324_CreateSubhashitaTable.sql; sourceTree = "<group>"; };
 		E8D485A51D214E830020C8F0 /* 20160627173438948_Words.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 20160627173438948_Words.sql; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52558AB9BD37E85081A5B900 /* Pods_Geervani.framework in Frameworks */,
+				E8BA5CA01FC0401200980F6E /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +278,7 @@
 		0DF0A23C74FAB0C45572E57F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8BA5C9F1FC0401200980F6E /* GameKit.framework */,
 				80BC94E7C4CEAA30E1F56F3C /* Pods_Geervani.framework */,
 				95FF5923B618CCBA439AE8A3 /* Pods_GeervaniTests.framework */,
 				ADB5A421BBCC9B43BE2ED9E7 /* Pods_GeervaniUITests.framework */,
@@ -606,6 +610,7 @@
 				A24B07FF1D1EB455007B2935 /* Resources */,
 				5A621E4AC30BD4A27C8C5FBF /* [CP] Embed Pods Frameworks */,
 				52C34E727265673AEE99AB88 /* [CP] Copy Pods Resources */,
+				E8221FF11F0ABFEA000F6E7A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -672,6 +677,12 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = E8SAEH35L4;
 						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					A24B08141D1EB455007B2935 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -917,6 +928,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeervaniTests/Pods-GeervaniTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E8221FF11F0ABFEA000F6E7A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run f7e4809f1bd630e79cbac823fe426bb20b742483 6f3a2ea4ce24a3b8485b278815ff772ebfbd05421bff8b593e14f5e96d8ad78c";
+		};
 		ED6DB560D23A78589C87421B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1064,6 +1088,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1103,6 +1128,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1113,12 +1139,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = E8SAEH35L4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Geervani/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = abheri.geervani;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1129,12 +1160,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = E8SAEH35L4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Geervani/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = abheri.geervani;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
