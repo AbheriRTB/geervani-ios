@@ -1,0 +1,29 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Geervani' do
+# Comment this line if you're not using Swift and don't want to use dynamic frameworks
+use_frameworks!
+
+  # Pods for Geervani
+source 'https://github.com/CocoaPods/Specs.git'
+pod "PromiseKit", "~> 4.0"
+pod 'FMDB'
+pod 'FMDBMigrationManager'
+pod 'SwiftyJSON'
+pod 'KSDeferred'
+
+  target 'GeervaniTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'GeervaniUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+pod 'Fabric'
+pod 'Crashlytics'

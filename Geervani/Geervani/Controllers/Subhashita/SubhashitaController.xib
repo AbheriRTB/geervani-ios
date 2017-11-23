@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2659" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SubhashitaController" customModule="Geervani" customModuleProvider="target">
+            <connections>
+                <outlet property="subhashita_text" destination="GwY-ba-NJd" id="oEh-Uc-XC9"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="हरिः ॐ" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GwY-ba-NJd">
+                    <rect key="frame" x="25" y="246" width="325" height="371"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_img.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6d5-4F-VRE">
+                    <rect key="frame" x="0.0" y="20" width="375" height="201"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="201" id="LMA-nX-8jN"/>
+                        <constraint firstAttribute="height" constant="80" id="Xgg-Md-5P9"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Xgg-Md-5P9"/>
+                        </mask>
+                    </variation>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="6d5-4F-VRE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dl1-pm-G7Y"/>
+                <constraint firstItem="GwY-ba-NJd" firstAttribute="top" secondItem="6d5-4F-VRE" secondAttribute="bottom" constant="25" id="UsP-Ci-UCy"/>
+                <constraint firstItem="GwY-ba-NJd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="XDm-nD-hYb"/>
+                <constraint firstItem="6d5-4F-VRE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="crl-gI-8H3"/>
+                <constraint firstAttribute="trailing" secondItem="6d5-4F-VRE" secondAttribute="trailing" id="eeE-TS-JqU"/>
+                <constraint firstAttribute="bottom" secondItem="GwY-ba-NJd" secondAttribute="bottom" constant="50" id="hZr-w7-REd"/>
+                <constraint firstAttribute="trailing" secondItem="GwY-ba-NJd" secondAttribute="trailing" constant="25" id="i9m-VN-I0l"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="70.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="home_img.jpg" width="649" height="258"/>
+    </resources>
+</document>
