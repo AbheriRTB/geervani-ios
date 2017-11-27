@@ -27,3 +27,5 @@ end
 
 pod 'Fabric'
 pod 'Crashlytics'
+pod 'GoogleAnalytics'
+pod 'Google/Analytics', "~>2.0.4"

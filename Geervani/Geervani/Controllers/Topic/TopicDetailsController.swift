@@ -77,6 +77,7 @@ class TopicDetailsController: UIViewController,TopicDetailsRepositoryObserver {
             cell.backgroundColor = tableView.backgroundColor
         }
 
+        cell.textLabel?.backgroundColor=UIColor.clear
         return cell
     }
 
@@ -92,5 +93,15 @@ class TopicDetailsController: UIViewController,TopicDetailsRepositoryObserver {
         selectedCell.contentView.backgroundColor = UIColor(red:0/255, green:140/255, blue:190/255, alpha:1)
 
     }
+    func tableView(_ tableView: UITableView, didDeselectRowAtIndexPath indexPath: IndexPath){
+        
+        guard let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath as IndexPath) else {
+            return
+        }
+        selectedCell.textLabel?.backgroundColor=UIColor.clear
+        selectedCell.backgroundColor = tableView.backgroundColor
+    }
+    
+    
 
 }

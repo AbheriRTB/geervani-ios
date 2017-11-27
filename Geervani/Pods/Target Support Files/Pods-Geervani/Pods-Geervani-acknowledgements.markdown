@@ -235,6 +235,30 @@ third-party archives.
 
 Fabric: Copyright 2016 Twitter, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. OSS: http://get.fabric.io/terms/opensource.txt
 
+## Google
+
+Copyright 2015 Google Inc.
+
+## GoogleAnalytics
+
+Copyright 2016 Google
+
+## GoogleInterchangeUtilities
+
+Copyright 2016 Google
+
+## GoogleNetworkingUtilities
+
+Copyright 2016 Google
+
+## GoogleSymbolUtilities
+
+Copyright 2016 Google
+
+## GoogleUtilities
+
+Copyright 2016 Google
+
 ## KSDeferred
 
 Copyright (C) 2013 Kurtis Seebaldt 

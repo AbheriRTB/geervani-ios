@@ -2,10 +2,13 @@
 import UIKit
 import Fabric
 import Crashlytics
+import Google
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate , UITabBarControllerDelegate {
 
+    //App ID: ca-app-pub-6039214503549316~7886279482
+    //Ad unit ID: ca-app-pub-6039214503549316/3037277486
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -20,6 +23,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UITabBarControllerDelega
         rootTabBarController.tabBar.isTranslucent = false
         self.window!.rootViewController = rootTabBarController
         self.window!.makeKeyAndVisible()
+        
+        /*
+        guard let gai = GAI.sharedInstance() else {
+            assert(false, "Google Analytics not configured correctly")
+        }
+        gai.tracker(withTrackingId: "YOUR_TRACKING_ID")
+        // Optional: automatically report uncaught exceptions.
+        gai.trackUncaughtExceptions = true
+        
+        // Optional: set Logger to VERBOSE for debug information.
+        // Remove before app release.
+        gai.logger.logLevel = .verbose; */
+        
         return true
     }
 
