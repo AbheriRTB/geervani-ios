@@ -19,7 +19,8 @@ class DictionaryController: UIViewController,UITableViewDelegate,UITableViewData
     let cellSpacingHeight: CGFloat = 150
     var sections : [(index: Int, length :Int, title: String)] = Array()
     var activityIndicator : UIActivityIndicatorView =
-                UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+    var loadLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: 10))
     
     
     override func viewDidLoad() {
@@ -48,6 +49,11 @@ class DictionaryController: UIViewController,UITableViewDelegate,UITableViewData
         activityIndicator.color=UIColor.gray
         activityIndicator.startAnimating()
         
+        let textLabel = UIBarButtonItem(customView:loadLabel)
+        self.navigationItem.setLeftBarButton(textLabel, animated: false)
+        loadLabel.text="Loading..."
+        loadLabel.sizeToFit()
+        
         
         let wordRepository = WordRepository()
         wordRepository.addObserver(self)
@@ -59,16 +65,23 @@ class DictionaryController: UIViewController,UITableViewDelegate,UITableViewData
             self.tableView.reloadData()
         }
         
-        //Fetch latest data from the web and update the table view
-        let promise = wordRepository.fetchWords()
-        promise.then({ (allWords) -> AnyObject? in
-            self.words = allWords as! [Word]
-            self.sections = self.getSections(self.words)
-            //self.tableView.reloadData()
-            self.activityIndicator.stopAnimating()
-            return nil
-        }) { (error) -> AnyObject? in
-            return nil
+        let networkStatus = Reachability().connectionStatus()
+        switch networkStatus {
+        case .Unknown, .Offline:
+            activityIndicator.stopAnimating()
+            loadLabel.text=""
+            break
+        case .Online(_):
+            //Fetch latest data from the web and update the table view
+            let promise = wordRepository.fetchWords()
+            promise.then({ (allWords) -> AnyObject? in
+                self.words = allWords as! [Word]
+                self.sections = self.getSections(self.words)
+                return nil
+            }) { (error) -> AnyObject? in
+                return nil
+            }
+            break
         }
         
         //self.tableView.registerClass(UITableViewCell.classForKeyedArchiver(), forCellReuseIdentifier: cellIdentifier)
@@ -85,10 +98,23 @@ class DictionaryController: UIViewController,UITableViewDelegate,UITableViewData
         tableView.addGestureRecognizer(tapGesture)
     }
     
-    func wordRepository(_ punchRepository: WordRepository,cachedWords: [Word]){
+    func wordRepository(_ wordRepository: WordRepository,cachedWords: [Word]){
         self.words = cachedWords
         self.sections = getSections(self.words)
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.activityIndicator.stopAnimating()
+            self.loadLabel.text=""
+        } 
+        
+    }
+    func wordRepository(_ wordRepository: WordRepository,cachedWords: [Word], letter:String){
+        self.words = cachedWords
+        self.sections = getSections(self.words)
+        print(letter)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
         
     }
     
@@ -121,7 +147,7 @@ class DictionaryController: UIViewController,UITableViewDelegate,UITableViewData
         return index
         
     }
-
+    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -135,14 +161,14 @@ class DictionaryController: UIViewController,UITableViewDelegate,UITableViewData
         
         //Adding Label to existing headerView
         self.edgesForExtendedLayout = UIRectEdge()
-
+        
         let headerView = UIView(frame: CGRect.zero)
         headerView.backgroundColor = UIColor.darkGray
         headerView.addSubview(headerLabel)
         
         return headerView
     }
- 
+    
     //This function is a must to control the height of the header. viewForHeaderInSection can't control the height
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
@@ -153,7 +179,7 @@ class DictionaryController: UIViewController,UITableViewDelegate,UITableViewData
         let footerFrame = CGRect(x: 10, y: 5, width: tableView.frame.width, height: 0.01)
         let footerView = UIView(frame: footerFrame)
         footerView.backgroundColor = UIColor.lightGray
-
+        
         return footerView
     }
     

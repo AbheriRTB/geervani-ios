@@ -4,7 +4,7 @@ import GoogleMobileAds
 import AudioToolbox
 
 class SubhashitaController: UIViewController, SubhashitaRepositoryObserver,GADBannerViewDelegate {
-
+    
     @IBOutlet weak var subhashita_text: UILabel!
     
     var subhashitas: [Subhashita] = [Subhashita]()
@@ -15,7 +15,7 @@ class SubhashitaController: UIViewController, SubhashitaRepositoryObserver,GADBa
     let ADMOB_BANNER_UNIT_ID = "ca-app-pub-6039214503549316/3037277486"
     // Ad banner and interstitial views
     var adMobBannerView = GADBannerView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Init AdMob banner
@@ -48,7 +48,7 @@ class SubhashitaController: UIViewController, SubhashitaRepositoryObserver,GADBa
     }
     
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -69,7 +69,7 @@ class SubhashitaController: UIViewController, SubhashitaRepositoryObserver,GADBa
         let unitFlags: NSCalendar.Unit = [.day]
         let components = (Calendar.current as NSCalendar).components(unitFlags, from: date)
         var retString: String = ""
- 
+        
         if subhashitas.count >= components.day! {
             retString =  subhashitas[components.day!].sanskrit_text!
         }else if subhashitas.count > 0{
@@ -132,6 +132,6 @@ class SubhashitaController: UIViewController, SubhashitaRepositoryObserver,GADBa
     func adView(_ view: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         hideBanner(adMobBannerView)
     }
-
-
+    
+    
 }

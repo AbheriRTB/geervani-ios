@@ -43,6 +43,7 @@ class SubhashitaRepository {
             subhashitaStorage.removeAllSubhashitas()
             subhashitaStorage.storeSubhashitas(subhashitas)
             let cachedSubhashitas = subhashitaStorage.fetchAllSubhashitas()
+            self.notifyObserver()
             deferred.resolve(withValue: NSArray(array:cachedSubhashitas, copyItems: true) as AnyObject)
             return nil
         }) { (error) -> AnyObject? in
@@ -58,7 +59,7 @@ class SubhashitaRepository {
         return cachedSubhashitas
     }
     
-    fileprivate func notifyObserver(_ subhashita : Subhashita) {
+    fileprivate func notifyObserver() {
         let cachedSubhashitas = self.subhashitaStorage!.fetchAllSubhashitas()
         observer!.subhashitaRepository(self, cachedSubhashita: cachedSubhashitas)
     }

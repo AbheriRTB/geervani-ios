@@ -97,6 +97,7 @@
 		E842CB92CF5F65FCD6B6F9FC /* Pods_GeervaniTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95FF5923B618CCBA439AE8A3 /* Pods_GeervaniTests.framework */; };
 		E84EA0831D292EA200CEA8F6 /* DictionaryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84EA0811D292EA200CEA8F6 /* DictionaryTableCell.swift */; };
 		E84EA0841D292EA200CEA8F6 /* DictionaryTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E84EA0821D292EA200CEA8F6 /* DictionaryTableCell.xib */; };
+		E868F38F1FCE9FBD00785596 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E868F38E1FCE9FBD00785596 /* NetworkReachability.swift */; };
 		E8B46D541FC893130018E38F /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B46D531FC893130018E38F /* GoogleMobileAds.framework */; };
 		E8B46D571FC8935D0018E38F /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B46D551FC8935D0018E38F /* EventKit.framework */; };
 		E8B46D581FC8935D0018E38F /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B46D561FC8935D0018E38F /* EventKitUI.framework */; };
@@ -242,6 +243,7 @@
 		E8228B211DFDBC36005278E4 /* info.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = info.html; sourceTree = "<group>"; };
 		E84EA0811D292EA200CEA8F6 /* DictionaryTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTableCell.swift; sourceTree = "<group>"; };
 		E84EA0821D292EA200CEA8F6 /* DictionaryTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DictionaryTableCell.xib; sourceTree = "<group>"; };
+		E868F38E1FCE9FBD00785596 /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		E8B46D531FC893130018E38F /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "Geervani/GoogleMobileAdsSdkiOS-7.26.0/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		E8B46D551FC8935D0018E38F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		E8B46D561FC8935D0018E38F /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
@@ -372,6 +374,7 @@
 		A24B08031D1EB455007B2935 /* Geervani */ = {
 			isa = PBXGroup;
 			children = (
+				E868F38D1FCE9F9500785596 /* Util */,
 				1D211EBE1EB049780085A861 /* Geervani-Bridging-Header.h */,
 				A24B08041D1EB455007B2935 /* AppDelegate.swift */,
 				A24B08351D1EB53B007B2935 /* Controllers */,
@@ -643,6 +646,14 @@
 			);
 			name = Topics;
 			path = Topic;
+			sourceTree = "<group>";
+		};
+		E868F38D1FCE9F9500785596 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				E868F38E1FCE9FBD00785596 /* NetworkReachability.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1040,6 +1051,7 @@
 				A24B08E51D1EB7C2007B2935 /* SubhashitaController.swift in Sources */,
 				E8D485A81D2151A50020C8F0 /* WordStorage.swift in Sources */,
 				A24B08E11D1EB7B8007B2935 /* InfoController.swift in Sources */,
+				E868F38F1FCE9FBD00785596 /* NetworkReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1186,6 +1198,7 @@
 			baseConfigurationReference = 82807482CB38519757106459 /* Pods-Geervani.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_ID_SUFFIX = .debug;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1199,7 +1212,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				NEW_SETTING = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.abheri.geervani.debug;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.abheri.geervani${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1212,6 +1225,7 @@
 			baseConfigurationReference = AB9CF2D42777B2FC47809A01 /* Pods-Geervani.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_ID_SUFFIX = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1225,7 +1239,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				NEW_SETTING = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.abheri.geervani.debug;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.abheri.geervani${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

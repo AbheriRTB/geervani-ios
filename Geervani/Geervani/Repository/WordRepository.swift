@@ -13,6 +13,7 @@ import KSDeferred
 
 protocol WordRepositoryObserver {
     func wordRepository(_ wordRepository: WordRepository, cachedWords: [Word])
+    func wordRepository(_ wordRepository: WordRepository, cachedWords: [Word], letter:String)
 }
 
 class WordRepository {
@@ -41,6 +42,7 @@ class WordRepository {
             wordStorage.removeAllWord()
             wordStorage.storeWords(words)
             let cachedWords = wordStorage.fetchAllWords()
+            self.notifyObserver()
             deferred.resolve(withValue: cachedWords as AnyObject)
             return nil
         }) { (error) -> AnyObject? in
@@ -54,7 +56,7 @@ class WordRepository {
     
     func fetchAllWordInfo() -> KSPromise<AnyObject>  {
         let deferred = KSDeferred<AnyObject>()
-
+        
         let wordFiles = [   "LetterA", "LetterB", "LetterC", "LetterD", "LetterE",
                             "LetterF", "LetterG", "LetterH", "LetterI", "LetterJ",
                             "LetterK", "LetterL", "LetterM", "LetterN", "LetterO",
@@ -93,10 +95,11 @@ class WordRepository {
     
     func fetchWordDetailsFromURL(_ url:String) -> KSPromise<AnyObject> {
         let deferred = KSDeferred<AnyObject>()
-
+        
         let requestPromise = URLSessionClient().requestWithURL(url)
         requestPromise.then({ (response) -> AnyObject? in
             let dataString = String(data: response as! Data, encoding: String.Encoding.utf8)
+            //self.notifyObserver(letter: url)
             deferred.resolve(withValue: dataString as AnyObject)
             return nil
         }) { (error) -> AnyObject? in
@@ -104,7 +107,7 @@ class WordRepository {
             return nil
         }
         return deferred.promise
-
+        
     }
     
     func fetchFilteredWords(_ searchString:String)->[Word]{
@@ -119,8 +122,12 @@ class WordRepository {
         return cachedWords
     }
     
-    fileprivate func notifyObserver(_ word : Word) {
+    fileprivate func notifyObserver() {
         let cachedWords = self.wordStorage!.fetchAllWords()
         observer!.wordRepository(self, cachedWords:cachedWords)
+    }
+    fileprivate func notifyObserver(letter:String) {
+        let cachedWords = self.wordStorage!.fetchAllWords()
+        observer!.wordRepository(self, cachedWords:cachedWords, letter:letter)
     }
 }

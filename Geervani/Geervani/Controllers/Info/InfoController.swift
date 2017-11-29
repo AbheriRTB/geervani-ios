@@ -5,9 +5,8 @@ import AudioToolbox
 
 class InfoController: UIViewController, GADBannerViewDelegate {
     
-
+    
     @IBOutlet weak var InfoWebView: UIWebView!
-    @IBOutlet weak var InfoTitle: UILabel!
     
     // IMPORTANT: REPLACE THE RED STRING BELOW WITH THE AD UNIT ID YOU'VE GOT BY REGISTERING YOUR APP IN http://apps.admob.com
     let ADMOB_BANNER_UNIT_ID = "ca-app-pub-6039214503549316/3037277486"
@@ -22,20 +21,20 @@ class InfoController: UIViewController, GADBannerViewDelegate {
         
         self.title = "Info"
         
-        InfoTitle.text = "Geervani"
-        InfoTitle.numberOfLines=0
+        /*
+         let infoFilePath = Bundle.main.url(forResource: "info", withExtension: "html");
+         let myRequest = URLRequest(url:infoFilePath!)
+         InfoWebView.loadRequest(myRequest) */
         
+        let url = NSURL(string: "http://abheri.pythonanywhere.com/static/geervani/geervani_info.html")
+        let request = NSURLRequest(url: url! as URL)
+        InfoWebView.loadRequest(request as URLRequest)
         
-        let infoFilePath = Bundle.main.url(forResource: "info", withExtension: "html");
-        let myRequest = URLRequest(url:infoFilePath!)
-        InfoWebView.loadRequest(myRequest)
-
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     
     func getInfoData() -> String  {
         
@@ -43,12 +42,12 @@ class InfoController: UIViewController, GADBannerViewDelegate {
         
         let specsBundle: Bundle = Bundle.main
         let path: String = specsBundle.path(forResource: "info", ofType: "html")!
+        
         do{
             infoString = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
         }catch let error as NSError{
             print("Failed reading info from file: Error: " + error.localizedDescription)
         }
-
         
         return infoString
     }
