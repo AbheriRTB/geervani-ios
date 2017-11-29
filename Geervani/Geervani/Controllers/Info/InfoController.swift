@@ -7,6 +7,7 @@ class InfoController: UIViewController, GADBannerViewDelegate {
     
     
     @IBOutlet weak var InfoWebView: UIWebView!
+    @IBOutlet weak var VersionLabel: UILabel!
     
     // IMPORTANT: REPLACE THE RED STRING BELOW WITH THE AD UNIT ID YOU'VE GOT BY REGISTERING YOUR APP IN http://apps.admob.com
     let ADMOB_BANNER_UNIT_ID = "ca-app-pub-6039214503549316/3037277486"
@@ -18,6 +19,11 @@ class InfoController: UIViewController, GADBannerViewDelegate {
         super.viewDidLoad()
         // Init AdMob banner
         initAdMobBanner()
+        
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            self.VersionLabel.text = "v" + version
+        }
+
         
         self.title = "Info"
         

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoController" customModule="Geervani" customModuleProvider="target">
             <connections>
                 <outlet property="InfoWebView" destination="qGS-kw-ocg" id="6Nk-iA-RCw"/>
+                <outlet property="VersionLabel" destination="W6h-Ts-9Lw" id="LIB-nc-8OJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,15 +22,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <webView opaque="NO" contentMode="top" translatesAutoresizingMaskIntoConstraints="NO" id="qGS-kw-ocg">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="652.5"/>
                 </webView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6h-Ts-9Lw">
+                    <rect key="frame" x="167" y="652.5" width="42.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="qGS-kw-ocg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7sH-zg-cBg"/>
                 <constraint firstItem="qGS-kw-ocg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Ezj-HM-6xG"/>
                 <constraint firstAttribute="trailing" secondItem="qGS-kw-ocg" secondAttribute="trailing" id="FHc-94-YIB"/>
-                <constraint firstAttribute="bottom" secondItem="qGS-kw-ocg" secondAttribute="bottom" id="dD3-ge-RPQ"/>
+                <constraint firstItem="W6h-Ts-9Lw" firstAttribute="top" secondItem="qGS-kw-ocg" secondAttribute="bottom" id="Lum-MR-Iy0"/>
+                <constraint firstItem="W6h-Ts-9Lw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TuJ-Ek-lOr"/>
+                <constraint firstAttribute="bottom" secondItem="W6h-Ts-9Lw" secondAttribute="bottom" id="upp-B5-xVT"/>
             </constraints>
             <point key="canvasLocation" x="34.5" y="54.5"/>
         </view>
